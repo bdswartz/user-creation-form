@@ -4,7 +4,8 @@ import SelectItem from '../SelectItem';
 import { removeRepeatItems } from '../../utilities/helpers';
 
 // const apiUri = 'https://not-a-real-endpoint.smallworld.ai/form'
-const apiUri = 'http://127.0.0.1:3001/form'
+const apiUriGet = 'http://127.0.0.1:3001/form'
+const apiUriPut = 'http://127.0.0.1:3001/form'
 let jobFunctionsClean = [];
 let statesClean = []
 
@@ -23,6 +24,7 @@ const UserCreationForm = () => {
         city: ''
     });
     const [errorMessage, setErrorMessage]= useState('');
+    const [submitMessage, setSubmitMessage] = useState('');
 // deconstruct for convenience
     const {firstName, lastName, emailAddress, password, company, jobTitle, jobFunction, state, city} = formState
 
@@ -31,7 +33,7 @@ const UserCreationForm = () => {
         const fetchData = async () => {
             try {
                 // await the asynchronous fetch call to the back end api endpoint
-                const res = await fetch(apiUri);
+                const res = await fetch(apiUriGet);
                 // convert to json
                 const jsonData = await res.json();
                 // load data into arrays for populating select options
@@ -51,8 +53,44 @@ const UserCreationForm = () => {
 // form handling functions
     const handleSubmit = (e) => {
         e.preventDefault();
-        
-        };
+
+        // if no errors in the form, submit form state to API endpoint
+        if(!errorMessage) {
+            const fetchData = async () => {
+                try {
+                    // await the asynchronous fetch call to the back end api endpoint
+                    const response = await fetch(apiUriPut,{
+                        method: 'POST',
+                        headers: {
+                            Accept: 'application/json',
+                                'Content-Type': 'application/json',
+                            },
+                        body: JSON.stringify(formState),
+                    });
+                    if (response.status === 200) {
+                        setSubmitMessage('Form Submitted Successfully');
+                        setFormState({
+                            firstName: '',
+                            lastName: '',
+                            emailAddress: '',
+                            password: '',
+                            company: '',
+                            jobTitle: '',
+                            jobFunction: '',
+                            state: '',
+                            city: ''
+                        });
+                    }
+                    else {
+                        console.log(response);
+                        setErrorMessage(`Form failed to submit:${response.status} ${response.statusText}`)
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+            fetchData();
+        }};
 
     const handleChange = event => {
         setFormState({ ...formState, [event.target.name]: event.target.value });
@@ -85,27 +123,27 @@ const UserCreationForm = () => {
     <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="firstName">First Name:</label>
-          <input type="text" name="firstName" data-name='First Name'value={firstName} onChange={handleChange} onBlur={handleInput}/>
+          <input required type="text" name="firstName" data-name='First Name'value={firstName} onChange={handleChange} onBlur={handleInput}/>
         </div>
         <div>
           <label htmlFor="lastName">Last Name:</label>
-          <input type="text" name="lastName" data-name='Last Name' value={lastName} onChange={handleChange} onBlur={handleInput}/>
+          <input required type="text" name="lastName" data-name='Last Name' value={lastName} onChange={handleChange} onBlur={handleInput}/>
         </div>
         <div>
           <label htmlFor="emailAddress">Email:</label>
-          <input type="email" name="emailAddress" data-name= 'Email' value={emailAddress} onChange={handleChange} onBlur={handleInput}/>
+          <input required type="email" name="emailAddress" data-name= 'Email' value={emailAddress} onChange={handleChange} onBlur={handleInput}/>
         </div>
         <div>
           <label htmlFor="password">Password:</label>
-          <input type="password" name="password" data-name='Password' value={password} onChange={handleChange} onBlur={handleInput}/>
+          <input required type="password" name="password" data-name='Password' value={password} onChange={handleChange} onBlur={handleInput}/>
         </div>
         <div>
           <label htmlFor="company">Company:</label>
-          <input type="text" name="company" data-name='Company' value={company} onChange={handleChange} onBlur={handleInput}/>
+          <input required type="text" name="company" data-name='Company' value={company} onChange={handleChange} onBlur={handleInput}/>
         </div>
         <div>
           <label htmlFor="jobTitle">Job Title:</label>
-          <input type="text" name="jobTitle" data-name='Job Title' value={jobTitle} onChange={handleChange} onBlur={handleInput}/>
+          <input required type="text" name="jobTitle" data-name='Job Title' value={jobTitle} onChange={handleChange} onBlur={handleInput}/>
         </div>
         <div>
             <SelectItem options={jobFunctionsClean} jobFunction={jobFunction} handleChange={handleChange} handleInput={handleInput}inputLabel= {'Job Function'} inputName={'jobFunction'}/>
@@ -115,12 +153,17 @@ const UserCreationForm = () => {
         </div>
         <div>
           <label htmlFor="city">City:</label>
-          <input type="text" name="city" data-name='City' value={city} onChange={handleChange} onBlur={handleInput}/>
+          <input required type="text" name="city" data-name='City' value={city} onChange={handleChange} onBlur={handleInput}/>
         </div>
         {/* display error message if the field is empty or email is improper format */}
         {errorMessage && (
             <div>
                 <p className='error'>{errorMessage}</p>
+            </div>
+        )}
+        {submitMessage && (
+            <div>
+                <p className='success'>{submitMessage}</p>
             </div>
         )}
         <button type="submit">Submit</button>
