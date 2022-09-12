@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { validateEmail } from '../../utilities/helpers';
 import SelectItem from '../SelectItem';
+import { removeRepeatItems } from '../../utilities/helpers';
 
 // const apiUri = 'https://not-a-real-endpoint.smallworld.ai/form'
+const apiUri = 'http://127.0.0.1:3001/form'
+let jobFunctionsClean = [];
+let statesClean = []
 
 const UserCreationForm = () => {
-    const testStates = ['Alaska', "Alabama","IlliNoise", "Iowa"]
-    const testJobFunctions = ['Accounting', 'HR', 'Compliance']
+
     // state variables (getters and setters)
     const [formState, setFormState] = useState({
         firstName: '',
@@ -17,11 +20,33 @@ const UserCreationForm = () => {
         jobTitle: '',
         jobFunction: '',
         state: '',
-        city: ','
+        city: ''
     });
     const [errorMessage, setErrorMessage]= useState('');
 // deconstruct for convenience
     const {firstName, lastName, emailAddress, password, company, jobTitle, jobFunction, state, city} = formState
+
+// on load get the data to populate the select elements
+    useEffect( ()=> {
+        const fetchData = async () => {
+            try {
+                // await the asynchronous fetch call to the back end api endpoint
+                const res = await fetch(apiUri);
+                // convert to json
+                const jsonData = await res.json();
+                // load data into arrays for populating select options
+                // pull object property, remove repeated items, and sort alphabetically
+                const {jobFunctions, states} = jsonData;
+                jobFunctionsClean = removeRepeatItems(jobFunctions.sort());
+                statesClean = removeRepeatItems(states.map(state=>state.name).sort());
+                } 
+                catch (error) {
+                    console.log(error);
+                }
+        }
+        fetchData();
+    }, []);
+
 
 // form handling functions
     const handleSubmit = (e) => {
@@ -83,10 +108,10 @@ const UserCreationForm = () => {
           <input type="text" name="jobTitle" data-name='Job Title' value={jobTitle} onChange={handleChange} onBlur={handleInput}/>
         </div>
         <div>
-            <SelectItem options={testJobFunctions} jobFunction={jobFunction} handleChange={handleChange} handleInput={handleInput}inputLabel= {'Job Function'} inputName={'jobFunction'}/>
+            <SelectItem options={jobFunctionsClean} jobFunction={jobFunction} handleChange={handleChange} handleInput={handleInput}inputLabel= {'Job Function'} inputName={'jobFunction'}/>
         </div>
         <div>
-            <SelectItem options={testStates} state={state} handleChange={handleChange} handleInput={handleInput} inputLabel= {'State'} inputName={'state'}/>
+            <SelectItem options={statesClean} state={state} handleChange={handleChange} handleInput={handleInput} inputLabel= {'State'} inputName={'state'}/>
         </div>
         <div>
           <label htmlFor="city">City:</label>
