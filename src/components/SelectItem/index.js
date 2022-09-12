@@ -4,7 +4,7 @@ const SelectItem = ({options, state, handleChange, handleInput, inputLabel, inpu
   return (
     <div>
         <label htmlFor="state">{inputLabel}</label>
-        <select type="text" name={inputName} data-name={inputLabel} value={state} onChange={handleChange} onBlur={handleInput}>
+        <select required type="text" name={inputName} data-name={inputLabel} value={state} onChange={handleChange} onBlur={handleInput}>
             {options.map((option, index) => (
             <option key={index} value={option}>
                 {option}
@@ -16,3 +16,4 @@ const SelectItem = ({options, state, handleChange, handleInput, inputLabel, inpu
 }
 
 export default SelectItem
+ 

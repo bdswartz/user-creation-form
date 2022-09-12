@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# User Creation Form
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### This is a basic React input form that receives user input and submits that input to an API endpoint using the HTTP Put method.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+#### Collaborators:
 
-### `npm start`
+- [Brian Swartz](https://github.com/bdswartz)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation
 
-### `npm test`
+This application is not deployed to the internet and at this point can only be run locally.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1.  Navigate to the folder in which you would like the application folder to reside and clone the GitHub repository for this application using the following command in the terminal: git clone git@github.com:bdswartz/user-creation-form.git
+2.  Navigate to the user-creation-form folder (created in step 1) in the terminal and run the app in development mode using the following terminal command: npm start.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Navigate in your browser to the following address to interact with the running application: http://localhost:3000/
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Once there, the user can fill in the field or select the appropriate options and once complete press the "Submit" button to create a user.
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Technologies
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> <b>Development Tools:</b>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- [create react app](https://www.npmjs.com/package/create-react-app)
+- React.js
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  ***
 
-## Learn More
+## User Story
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Acceptance Criteria for Minimum Viable Product
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+GIVEN an application that contains a form for creating a user:
 
-### Code Splitting
+- When loading the app,
+  THEN display a form with the following fields; firstName, lastName, emailAddress, password, company, jobTitle, jobFunction, state, and city
+- When the form displays,
+  THEN allow the user to complete and submit the form
+- WHEN the user presses the submit button,
+  THEN do not allow the form to submit to the API endpoint without completing the entire form
+- WHEN the form submits to the API endpoint,
+  THEN provide feedback to the user on the status of the submission to the API endpoint
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- The "Job Function" and "State" select fields are populated with options from an API endpoint. The data from that API endpoint is sorted alphabetically and scrubbed for repeated terms prior to generating the options dropdown.
+- The application provides feedback as the user is filling in the form if any validation rules are violated. It also checks the entire form once submitted to ensure no requirements are violated prior to submitting the information to the API endpoint.
+- Submission success or error messages are provided at the bottom of the form once the form is submitted.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Questions
 
-### Advanced Configuration
+Please visit my GitHub page
+at https://github.com/bdswartz
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+If there are any questions about the project,
+feel free to open an issue or contact me at briandswartz@outlook.com

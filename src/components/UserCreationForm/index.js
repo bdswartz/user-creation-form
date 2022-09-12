@@ -53,7 +53,6 @@ const UserCreationForm = () => {
 // form handling functions
     const handleSubmit = (e) => {
         e.preventDefault();
-
         // if no errors in the form, submit form state to API endpoint
         if(!errorMessage) {
             const fetchData = async () => {
@@ -82,7 +81,6 @@ const UserCreationForm = () => {
                         });
                     }
                     else {
-                        console.log(response);
                         setErrorMessage(`Form failed to submit:${response.status} ${response.statusText}`)
                     }
                 } catch (error) {
