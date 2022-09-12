@@ -42,12 +42,12 @@ Once there, the user can fill in the field or select the appropriate options and
 
 GIVEN an application that contains a form for creating a user:
 
-- When loading the app,
+- WHEN loading the app,
   THEN display a form with the following fields; firstName, lastName, emailAddress, password, company, jobTitle, jobFunction, state, and city
-- When the form displays,
+- WHEN the form displays,
   THEN allow the user to complete and submit the form
 - WHEN the user presses the submit button,
-  THEN do not allow the form to submit to the API endpoint without completing the entire form
+  THEN do not allow the form to submit to the API endpoint until the user completes the entire form
 - WHEN the form submits to the API endpoint,
   THEN provide feedback to the user on the status of the submission to the API endpoint
 

@@ -119,6 +119,8 @@ const UserCreationForm = () => {
 // JSX return function
   return (
     <form onSubmit={handleSubmit}>
+        <h2>User Creation Form</h2>
+        <hr/>
         <div>
           <label htmlFor="firstName">First Name:</label>
           <input required type="text" name="firstName" data-name='First Name'value={firstName} onChange={handleChange} onBlur={handleInput}/>
