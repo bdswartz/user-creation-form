@@ -3,9 +3,10 @@ import { validateEmail } from '../../utilities/helpers';
 import SelectItem from '../SelectItem';
 import { removeRepeatItems } from '../../utilities/helpers';
 
-// const apiUri = 'https://not-a-real-endpoint.smallworld.ai/form'
-const apiUriGet = 'http://127.0.0.1:3001/form'
-const apiUriPut = 'http://127.0.0.1:3001/form'
+const apiUri = 'https://not-a-real-endpoint.smallworld.ai/form'
+// const apiUriGet = 'http://127.0.0.1:3001/form'
+// const apiUriPut = 'http://127.0.0.1:3001/form'
+
 let jobFunctionsClean = [];
 let statesClean = []
 
@@ -33,7 +34,7 @@ const UserCreationForm = () => {
         const fetchData = async () => {
             try {
                 // await the asynchronous fetch call to the back end api endpoint
-                const res = await fetch(apiUriGet);
+                const res = await fetch(apiUri);
                 // convert to json
                 const jsonData = await res.json();
                 // load data into arrays for populating select options
@@ -58,7 +59,7 @@ const UserCreationForm = () => {
             const fetchData = async () => {
                 try {
                     // await the asynchronous fetch call to the back end api endpoint
-                    const response = await fetch(apiUriPut,{
+                    const response = await fetch(apiUri,{
                         method: 'POST',
                         headers: {
                             Accept: 'application/json',
