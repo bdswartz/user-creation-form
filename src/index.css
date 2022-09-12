@@ -37,25 +37,25 @@ button:hover {
 }
 
 form {
-  width: 40%;
+  width: 60%;
   background-color: #cccccc;
   border-radius: 5px;
   border: 2px solid black;
 }
 
-input {
+input, select {
   font-size: 1rem;
   padding: 0.25rem;
   border: 1px solid black;
   outline: none;
   border-radius: 3px;
   margin: 10px 5px;
+  width: 200px;
 }
-
+ 
 label {
   font-weight: bold;
   margin-right: 5px;
-  width: 200px;
 }
 
 input:focus {
