@@ -3,8 +3,8 @@ import { validateEmail } from '../../utilities/helpers';
 import SelectItem from '../SelectItem';
 import { removeRepeatItems } from '../../utilities/helpers';
 
-// const apiUri = 'https://not-a-real-endpoint.smallworld.ai/form'
-const apiUri = 'http://127.0.0.1:3001/form'
+const apiUri = 'https://not-a-real-endpoint.smallworld.ai/form'
+// const apiUri = 'http://127.0.0.1:3001/form'
 
 let jobFunctionsClean = [];
 let statesClean = []
