@@ -3,9 +3,8 @@ import { validateEmail } from '../../utilities/helpers';
 import SelectItem from '../SelectItem';
 import { removeRepeatItems } from '../../utilities/helpers';
 
-const apiUri = 'https://not-a-real-endpoint.smallworld.ai/form'
-// const apiUriGet = 'http://127.0.0.1:3001/form'
-// const apiUriPut = 'http://127.0.0.1:3001/form'
+// const apiUri = 'https://not-a-real-endpoint.smallworld.ai/form'
+const apiUri = 'http://127.0.0.1:3001/form'
 
 let jobFunctionsClean = [];
 let statesClean = []
@@ -122,37 +121,33 @@ const UserCreationForm = () => {
     <form onSubmit={handleSubmit}>
         <h2>User Creation Form</h2>
         <hr/>
-        <div>
+        <div className='input-box'>
           <label htmlFor="firstName">First Name:</label>
           <input required type="text" name="firstName" data-name='First Name'value={firstName} onChange={handleChange} onBlur={handleInput}/>
         </div>
-        <div>
+        <div className='input-box'>
           <label htmlFor="lastName">Last Name:</label>
           <input required type="text" name="lastName" data-name='Last Name' value={lastName} onChange={handleChange} onBlur={handleInput}/>
         </div>
-        <div>
+        <div className='input-box'>
           <label htmlFor="emailAddress">Email:</label>
           <input required type="email" name="emailAddress" data-name= 'Email' value={emailAddress} onChange={handleChange} onBlur={handleInput}/>
         </div>
-        <div>
+        <div className='input-box'>
           <label htmlFor="password">Password:</label>
           <input required type="password" name="password" data-name='Password' value={password} onChange={handleChange} onBlur={handleInput}/>
         </div>
-        <div>
+        <div className='input-box'>
           <label htmlFor="company">Company:</label>
           <input required type="text" name="company" data-name='Company' value={company} onChange={handleChange} onBlur={handleInput}/>
         </div>
-        <div>
+        <div className='input-box'>
           <label htmlFor="jobTitle">Job Title:</label>
           <input required type="text" name="jobTitle" data-name='Job Title' value={jobTitle} onChange={handleChange} onBlur={handleInput}/>
         </div>
-        <div>
-            <SelectItem options={jobFunctionsClean} jobFunction={jobFunction} handleChange={handleChange} handleInput={handleInput}inputLabel= {'Job Function'} inputName={'jobFunction'}/>
-        </div>
-        <div>
-            <SelectItem options={statesClean} state={state} handleChange={handleChange} handleInput={handleInput} inputLabel= {'State'} inputName={'state'}/>
-        </div>
-        <div>
+        <SelectItem options={jobFunctionsClean} jobFunction={jobFunction} handleChange={handleChange} handleInput={handleInput}inputLabel= {'Job Function'} inputName={'jobFunction'}/>
+        <SelectItem options={statesClean} state={state} handleChange={handleChange} handleInput={handleInput} inputLabel= {'State'} inputName={'state'}/>
+        <div className='input-box'>
           <label htmlFor="city">City:</label>
           <input required type="text" name="city" data-name='City' value={city} onChange={handleChange} onBlur={handleInput}/>
         </div>

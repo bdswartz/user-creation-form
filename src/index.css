@@ -28,12 +28,14 @@ button {
   cursor: pointer;
   color: white;
   background-color: rgb(100, 100, 150);
-  width: 100%;
+  width: 70%;
   height: 40px;
 }
 
-div {
-  text-align: left;
+.input-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 h2 {
@@ -56,28 +58,44 @@ button:hover {
 }
 
 form {
-  align-self: center;
   background-color: #cccccc;
   border-radius: 5px;
   border: 2px solid black;
   padding: 20px 30px;
   box-shadow: 0 0 2.0rem rgba(0, 0, 0, 0.5);
+  width: 350px;
 }
 
-input, select {
+input {
+  font-size: 1rem;
+  padding: 0.25rem; 
+  border: 1px solid black;
+  outline: none;
+  border-radius: 3px;
+  margin: 5px 5px;
+  width: 170px; 
+}
+    
+select {
   font-size: 1rem;
   padding: 0.25rem;
   border: 1px solid black;
   outline: none;
   border-radius: 3px;
   margin: 5px 5px;
-  width: 200px;
+  width: 180px;     
+}
+
+select:focus {
+  border: 2px solid black;
+  box-shadow: 0 0 0.25rem rgba(0, 0, 0, 0.5);
 }
  
 label {
   text-align: left;
   font-weight: bold;
   margin:  5px;
+  text-align: center;
 }
 
 input:focus {
