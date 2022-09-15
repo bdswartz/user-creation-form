@@ -14,7 +14,7 @@
 
 This application is not deployed to the internet and at this point can only be run locally.
 
-1.  Navigate to the folder in which you would like the application folder to reside and clone the GitHub repository for this application using the following command in the terminal: git clone git@github.com:bdswartz/user-creation-form.git
+1.  Navigate to the folder in which you would like the application folder to reside and clone the GitHub repository for this application using the following command in the terminal: git clone https://github.com/bdswartz/user-creation-form.git
 2.  Navigate to the user-creation-form folder (created in step 1) in the terminal and run the app in development mode using the following terminal command: npm start.
 
 ---
